@@ -1,0 +1,28 @@
+.button {
+  border: 2px solid;
+  background-color: $white;
+  padding: 11px 27px;
+  color: $darkPurple;
+  border-radius: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: $lightPurple;
+  }
+}
+
+.filled {
+  background-color: $darkPurple;
+  color: $white;
+}
+
+.middleLink {
+  border: none;
+  color: $grey;
+  &:hover {
+    background-color: initial;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
