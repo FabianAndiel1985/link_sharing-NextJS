@@ -1,0 +1,7 @@
+header {
+  padding: 24px;
+
+  @media (max-width: $maxPhone) {
+    padding: 0px;
+  }
+}

@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 import "./button.scss";
 
 interface IButtonProps {
-  text: string;
   isFilled: boolean;
   isMiddleLink: boolean;
+  text?: string;
   icon?: ReactNode;
 }
 
@@ -14,9 +14,10 @@ const Button = ({ icon, text, isFilled, isMiddleLink }: IButtonProps) => {
       <button
         className={`button ${isFilled && " filled"} ${
           isMiddleLink && " middleLink"
-        }`}
+        } ${!text && icon && " icon"} `}
       >
-        {icon && isMiddleLink && icon} {text}
+        {icon}
+        {text && <span className="button__text">{text} </span>}
       </button>
     </>
   );

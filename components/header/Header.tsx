@@ -2,10 +2,9 @@ import React from "react";
 import HeaderBar from "./HeaderBar";
 import PreviewContent from "./PreviewContent";
 import Content from "./Content";
+import "./header.scss";
 
 const Header = () => {
-  // if preview route
-
   const isPreview: boolean = false;
 
   return (

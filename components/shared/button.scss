@@ -5,8 +5,13 @@
   color: $darkPurple;
   border-radius: 8px;
   cursor: pointer;
+  max-height: 46px;
   &:hover {
     background-color: $lightPurple;
+  }
+
+  @media (max-width: $maxPhone) {
+    max-height: 42px;
   }
 }
 
@@ -25,4 +30,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+
+  @media (max-width: $maxPhone) {
+    .button__text {
+      display: none;
+    }
+  }
 }
