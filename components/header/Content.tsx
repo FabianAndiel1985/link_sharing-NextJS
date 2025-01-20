@@ -44,9 +44,7 @@ const Content = () => {
     <>
       <div className={"content"}>
         <LogoImage />
-
         <MiddleLinks />
-
         <ContentButton />
       </div>
     </>
