@@ -1,0 +1,34 @@
+.link-dragable {
+  background-color: $lightGrey;
+
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: $borderRadius;
+
+  &__heading {
+    display: inherit;
+    justify-content: space-between;
+    position: relative;
+    color: $grey;
+
+    &__image-link {
+      display: inherit;
+      justify-content: space-between;
+      align-items: center;
+      width: 10.76%;
+    }
+  }
+
+  input,
+  select {
+    width: 100%;
+    height: 48px;
+  }
+
+  label {
+    margin-top: 12px;
+    margin-bottom: 4px;
+  }
+}
