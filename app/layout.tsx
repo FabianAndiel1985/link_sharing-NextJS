@@ -4,6 +4,7 @@ import "./globals.scss";
 import HeaderBar from "@/components/header/HeaderBar";
 import HeaderColoredSurrounding from "@/components/header/HeaderColoredSurrounding";
 import Header from "@/components/header/Header";
+import LinkCustomization from "@/components/links/LinkCustomization";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
+        <LinkCustomization />
         {children}
       </body>
     </html>

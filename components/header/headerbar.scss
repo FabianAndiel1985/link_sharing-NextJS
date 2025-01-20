@@ -8,18 +8,29 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
+  @media (max-width: $maxPhone) {
+    height: 74px;
+  }
 }
 
 .preview-content {
-  display: flex-;
+  height: 46px;
+  display: flex;
   justify-content: space-between;
+  @media (max-width: $maxPhone) {
+    height: 42px;
+  }
 }
 
 .content {
+  height: 46px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  @media (max-width: $maxPhone) {
+    height: 42px;
+  }
 
   &__middle-links {
     display: inherit;

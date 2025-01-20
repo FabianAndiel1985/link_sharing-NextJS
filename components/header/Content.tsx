@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Button from "../shared/Button";
+import LogoImage from "./LogoImage";
+import ContentButton from "./ContentButton";
 
 const MiddleLinks = () => {
   return (
@@ -41,16 +43,11 @@ const Content = () => {
   return (
     <>
       <div className={"content"}>
-        <Image
-          src={"logo-devlinks-large.svg"}
-          alt={"devlinks logo"}
-          width={146}
-          height={32}
-        />
+        <LogoImage />
 
         <MiddleLinks />
 
-        <Button text={"Preview"} isFilled={false} isMiddleLink={false} />
+        <ContentButton />
       </div>
     </>
   );
