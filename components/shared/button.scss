@@ -4,7 +4,7 @@
   background-color: $white;
   padding: 11px 27px;
   color: $darkPurple;
-  border-radius: 8px;
+  border-radius: $borderRadius;
   cursor: pointer;
   max-height: 46px;
   &:hover {

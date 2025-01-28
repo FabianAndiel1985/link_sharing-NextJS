@@ -1,8 +1,25 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Button from "../shared/Button";
 import "./linkCustomization.scss";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { StrictModeDroppable } from "./StrictModeDroppable";
+import LinkDragable from "./LinkDragable";
 
-const LinkCustomization = () => {
+const LinkCustomization: React.FC = () => {
+  const handleDragEnd = (result): void => {
+    if (!result.destination) return;
+    const newBox = Array.from(boxes);
+    const [draggedItem] = newBox.splice(result.source.index, 1);
+    newBox.splice(result.destination.index, 0, draggedItem);
+    setBoxes(newBox);
+  };
+
+  const [boxes, setBoxes] = useState([
+    { id: 0, bg: "red" },
+    { id: 1, bg: "green" },
+  ]);
+
   return (
     <>
       <div className={"customization-box"}>
@@ -15,7 +32,33 @@ const LinkCustomization = () => {
         <br />
         <br />
         <Button isFilled={false} isMiddleLink={false} text={"+ Add new link"} />
+
+        <LinkDragable />
+
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <StrictModeDroppable droppableId="boxes">
+            {(provided) => (
+              <ul ref={provided.innerRef} {...provided.droppableProps}>
+                {boxes.map(({ id, bg }, index) => (
+                  <Draggable key={id} draggableId={id.toString()} index={index}>
+                    {(provided) => (
+                      <li
+                        ref={provided.innerRef}
+                        {...provided.dragHandleProps}
+                        {...provided.draggableProps}
+                      >
+                        <div className={`box ${bg}`}></div>
+                      </li>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </StrictModeDroppable>
+        </DragDropContext>
       </div>
+
       <div className={"saving-box"}>
         <Button isFilled={true} isMiddleLink={false} text={"Save"} />
       </div>

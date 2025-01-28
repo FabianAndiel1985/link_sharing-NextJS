@@ -3,9 +3,44 @@ $hoverPurple: #beadff;
 $lightPurple: #efebff;
 $white: #ffffff;
 $grey: #737373;
+$borderGrey: #d9d9d9;
 $lightGrey: #fafafa;
 
 $maxPhone: 767px;
 $minTablet: $maxPhone + 1;
 $maxTablet: 1339px;
 $maxDesktop: $maxTablet + 1;
+
+$borderRadius: 8px;
+
+$linkPlattformInputHeight: 48px;
+
+$fontSizeHeadingS: 16px;
+$fontSizeHeadingM: 32px;
+
+$fontLineHeight: 150%;
+
+@mixin headingFont($fontSize) {
+  line-height: $fontLineHeight;
+  font-size: $fontSize;
+  font-weight: bold;
+}
+
+$fontSizeBodyS: 12px;
+$fontSizeBodyM: 16px;
+
+@mixin bodyFont($fontSize) {
+  line-height: $fontLineHeight;
+  font-size: $fontSize;
+}
+
+@mixin flexCenter() {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flexSpaceBetweenCenter() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

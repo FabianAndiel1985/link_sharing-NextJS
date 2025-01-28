@@ -1,0 +1,35 @@
+.link-dragable {
+  background-color: $lightGrey;
+
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: $borderRadius;
+
+  &__heading {
+    display: inherit;
+    justify-content: space-between;
+    position: relative;
+    color: $grey;
+
+    &__image-link {
+      @include flexSpaceBetweenCenter();
+      width: 10.76%;
+      @include headingFont($fontSizeHeadingS);
+    }
+  }
+
+  @include bodyFont($fontSizeBodyM);
+
+  input {
+    width: 100%;
+    height: $linkPlattformInputHeight;
+  }
+
+  label {
+    margin-top: 12px;
+    margin-bottom: 4px;
+    @include bodyFont($fontSizeBodyS);
+  }
+}

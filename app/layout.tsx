@@ -23,7 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${instrumentSans.className}`}>
         <Header />
+
         <LinkCustomization />
+
         {children}
       </body>
     </html>
