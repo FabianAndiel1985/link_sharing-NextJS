@@ -6,8 +6,8 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
 import LinkDragable from "./LinkDragable";
 
-const LinkCustomization = () => {
-  const handleDragEnd = (result) => {
+const LinkCustomization: React.FC = () => {
+  const handleDragEnd = (result): void => {
     if (!result.destination) return;
     const newBox = Array.from(boxes);
     const [draggedItem] = newBox.splice(result.source.index, 1);

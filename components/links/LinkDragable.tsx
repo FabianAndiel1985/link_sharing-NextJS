@@ -1,7 +1,8 @@
 import Image from "next/image";
 import "./linkDragable.scss";
+import SocialMediaSelect from "./SocialMediaSelect";
 
-const LinkDragable = () => {
+const LinkDragable: React.FC = () => {
   return (
     <>
       <div className="link-dragable">
@@ -9,8 +10,8 @@ const LinkDragable = () => {
           <div className="link-dragable__heading__image-link">
             <Image
               src="icon-drag-and-drop.svg"
-              height={12}
-              width={6}
+              height={24}
+              width={12}
               alt={"icon drag and drop"}
             />
             Link #1
@@ -18,7 +19,7 @@ const LinkDragable = () => {
           <p>Remove</p>
         </div>
         <label> Platform</label>
-        <select></select>
+        <SocialMediaSelect />
         <label> Link </label>
         <input></input>
       </div>

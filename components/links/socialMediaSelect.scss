@@ -1,0 +1,46 @@
+.inverted {
+  transform: rotate(180deg);
+}
+
+.plattform-select {
+  @include flexSpaceBetweenCenter();
+  background-color: $white;
+  border: 1px solid $borderGrey;
+  padding: 0px 16px;
+  height: $linkPlattformInputHeight;
+  cursor: pointer;
+
+  &__selected-plattform {
+    @include flexSpaceBetweenCenter();
+    gap: 12px;
+    padding-left: 0px;
+  }
+}
+
+.select-menu {
+  margin-top: 16px;
+  background-color: $white;
+  border-radius: $borderRadius;
+  ul {
+    padding-left: 16px;
+    li {
+      cursor: pointer;
+      height: $linkPlattformInputHeight;
+      padding: auto;
+      @include flexCenter();
+      border-bottom: 1px solid $borderGrey;
+
+      .select-menu__entry {
+        display: flex;
+        align-items: center;
+        p {
+          margin-left: 12px;
+        }
+      }
+
+      &:hover {
+        background-color: $lightPurple;
+      }
+    }
+  }
+}

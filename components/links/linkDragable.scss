@@ -14,21 +14,22 @@
     color: $grey;
 
     &__image-link {
-      display: inherit;
-      justify-content: space-between;
-      align-items: center;
+      @include flexSpaceBetweenCenter();
       width: 10.76%;
+      @include headingFont($fontSizeHeadingS);
     }
   }
 
-  input,
-  select {
+  @include bodyFont($fontSizeBodyM);
+
+  input {
     width: 100%;
-    height: 48px;
+    height: $linkPlattformInputHeight;
   }
 
   label {
     margin-top: 12px;
     margin-bottom: 4px;
+    @include bodyFont($fontSizeBodyS);
   }
 }

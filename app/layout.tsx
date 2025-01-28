@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
-import HeaderBar from "@/components/header/HeaderBar";
-import HeaderColoredSurrounding from "@/components/header/HeaderColoredSurrounding";
 import Header from "@/components/header/Header";
 import LinkCustomization from "@/components/links/LinkCustomization";
 
@@ -22,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
+
         <LinkCustomization />
+
         {children}
       </body>
     </html>
