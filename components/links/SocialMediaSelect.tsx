@@ -2,17 +2,24 @@
 import Image from "next/image";
 import "./socialMediaSelect.scss";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { platforms } from "@/data/mocks";
 import {
   IPlattform,
   IPlattformEntryProps,
   IShowMenuProps,
 } from "@/types/types";
+import CustomInput from "../shared/CustomInput";
 
 const SocialMediaSelect: React.FC = () => {
   const [menueIsOpen, setMenueIsOpen] = useState<boolean>(false);
   const [selectedPlattform, setSelectedPlattform] = useState<string>("");
+
+  useEffect(() => {
+    if (selectedPlattform !== "") {
+      console.log("Write it in the context");
+    }
+  }, [selectedPlattform]);
 
   const plattformsWithIcons: IPlattform[] = platforms.map(
     (plattform, index) => {
@@ -60,15 +67,14 @@ const SocialMediaSelect: React.FC = () => {
 
   return (
     <>
-      <div
-        className={"plattform-select"}
-        onClick={() => {
+      <CustomInput
+        clickHandler={() => {
           setMenueIsOpen((prevState) => !prevState);
         }}
       >
         {selectedPlattform !== "" ? (
           <>
-            <div className={"plattform-select__selected-plattform"}>
+            <div className={"selected-plattform"}>
               <Image
                 src={"social-media-icons/icon-" + selectedPlattform + ".svg"}
                 height={16}
@@ -82,7 +88,8 @@ const SocialMediaSelect: React.FC = () => {
           <p> Choose your plattform ... </p>
         )}
         <ShowMenu isOpen={menueIsOpen} />
-      </div>
+      </CustomInput>
+
       {menueIsOpen && (
         <div className={"select-menu"}>
           <ul>

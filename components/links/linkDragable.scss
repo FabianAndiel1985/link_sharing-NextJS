@@ -32,4 +32,17 @@
     margin-bottom: 4px;
     @include bodyFont($fontSizeBodyS);
   }
+
+  .custom-input {
+    #input-link-entry {
+      padding-left: 16px;
+      border: 1px solid $borderGrey;
+      border-left: none;
+      border-right: none;
+      &:focus-visible,
+      :focus {
+        outline: none !important;
+      }
+    }
+  }
 }

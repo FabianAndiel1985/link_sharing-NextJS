@@ -1,0 +1,8 @@
+.custom-input {
+  @include flexSpaceBetweenCenter();
+  background-color: $white;
+  border: 1px solid $borderGrey;
+  padding: 0px 16px;
+  height: $linkPlattformInputHeight;
+  cursor: pointer;
+}

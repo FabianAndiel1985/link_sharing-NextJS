@@ -2,19 +2,10 @@
   transform: rotate(180deg);
 }
 
-.plattform-select {
+.selected-plattform {
   @include flexSpaceBetweenCenter();
-  background-color: $white;
-  border: 1px solid $borderGrey;
-  padding: 0px 16px;
-  height: $linkPlattformInputHeight;
-  cursor: pointer;
-
-  &__selected-plattform {
-    @include flexSpaceBetweenCenter();
-    gap: 12px;
-    padding-left: 0px;
-  }
+  gap: 12px;
+  padding-left: 0px;
 }
 
 .select-menu {
@@ -22,7 +13,7 @@
   background-color: $white;
   border-radius: $borderRadius;
   ul {
-    padding-left: 16px;
+    padding: 0px 16px;
     li {
       cursor: pointer;
       height: $linkPlattformInputHeight;
