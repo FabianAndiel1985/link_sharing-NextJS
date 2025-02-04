@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Button from "../shared/Button";
 import "./linkCustomization.scss";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable } from "@hello-pangea/dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
 import LinkDragable from "./LinkDragable";
 
