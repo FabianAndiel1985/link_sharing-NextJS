@@ -4,7 +4,11 @@ import SocialMediaSelect from "./SocialMediaSelect";
 import CustomInput from "../shared/CustomInput";
 import { ReactNode } from "react";
 
-const LinkDragable: React.FC = () => {
+export interface DraggableProps {
+  index: number;
+}
+
+const LinkDragable: React.FC<DraggableProps> = ({ index }: DraggableProps) => {
   const MagnifiyingGlass: () => ReactNode = () => {
     return (
       <>
@@ -29,7 +33,7 @@ const LinkDragable: React.FC = () => {
               width={12}
               alt={"icon drag and drop"}
             />
-            Link #1
+            Link #{index}
           </div>
           <p>Remove</p>
         </div>

@@ -15,10 +15,7 @@ const LinkCustomization: React.FC = () => {
     setBoxes(newBox);
   };
 
-  const [boxes, setBoxes] = useState([
-    { id: 0, bg: "red" },
-    { id: 1, bg: "green" },
-  ]);
+  const [boxes, setBoxes] = useState([{ id: 0 }, { id: 1 }]);
 
   return (
     <>
@@ -31,15 +28,27 @@ const LinkCustomization: React.FC = () => {
         </small>
         <br />
         <br />
-        <Button isFilled={false} isMiddleLink={false} text={"+ Add new link"} />
-
-        <LinkDragable />
+        <Button
+          isFilled={false}
+          isMiddleLink={false}
+          text={"+ Add new link"}
+          onClick={() => {
+            if (boxes.length < 6) {
+              setBoxes((prevBoxes) => [
+                ...prevBoxes,
+                { id: prevBoxes.length + 1 },
+              ]);
+            } else {
+              console.log("reached maximum");
+            }
+          }}
+        />
 
         <DragDropContext onDragEnd={handleDragEnd}>
           <StrictModeDroppable droppableId="boxes">
             {(provided) => (
               <ul ref={provided.innerRef} {...provided.droppableProps}>
-                {boxes.map(({ id, bg }, index) => (
+                {boxes.map(({ id }, index) => (
                   <Draggable key={id} draggableId={id.toString()} index={index}>
                     {(provided) => (
                       <li
@@ -47,7 +56,7 @@ const LinkCustomization: React.FC = () => {
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}
                       >
-                        <div className={`box ${bg}`}></div>
+                        <LinkDragable index={index + 1} />
                       </li>
                     )}
                   </Draggable>
