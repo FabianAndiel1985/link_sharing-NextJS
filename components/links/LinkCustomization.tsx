@@ -17,6 +17,12 @@ const LinkCustomization: React.FC = () => {
 
   const [boxes, setBoxes] = useState([{ id: 0 }, { id: 1 }]);
 
+  const removeHandler = (id: number): void => {
+    setBoxes((prevState) => {
+      return [...prevState.filter((item) => item.id != id)];
+    });
+  };
+
   return (
     <>
       <div className={"customization-box"}>
@@ -39,7 +45,6 @@ const LinkCustomization: React.FC = () => {
                 { id: prevBoxes.length + 1 },
               ]);
             } else {
-              console.log("reached maximum");
             }
           }}
         />
@@ -56,7 +61,11 @@ const LinkCustomization: React.FC = () => {
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}
                       >
-                        <LinkDragable index={index + 1} />
+                        <LinkDragable
+                          index={index + 1}
+                          id={id}
+                          removeHandler={removeHandler}
+                        />
                       </li>
                     )}
                   </Draggable>

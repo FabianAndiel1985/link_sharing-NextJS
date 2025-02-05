@@ -6,9 +6,15 @@ import { ReactNode } from "react";
 
 export interface DraggableProps {
   index: number;
+  id: number;
+  removeHandler: (id: number) => void;
 }
 
-const LinkDragable: React.FC<DraggableProps> = ({ index }: DraggableProps) => {
+const LinkDragable: React.FC<DraggableProps> = ({
+  index,
+  removeHandler,
+  id,
+}: DraggableProps) => {
   const MagnifiyingGlass: () => ReactNode = () => {
     return (
       <>
@@ -35,7 +41,13 @@ const LinkDragable: React.FC<DraggableProps> = ({ index }: DraggableProps) => {
             />
             Link #{index}
           </div>
-          <p>Remove</p>
+          <p
+            onClick={() => {
+              removeHandler(id);
+            }}
+          >
+            Remove
+          </p>
         </div>
         <label> Platform</label>
         <SocialMediaSelect />

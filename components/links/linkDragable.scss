@@ -18,6 +18,10 @@
       width: 10.76%;
       @include headingFont($fontSizeHeadingS);
     }
+
+    p {
+      cursor: pointer;
+    }
   }
 
   @include bodyFont($fontSizeBodyM);
