@@ -33,7 +33,7 @@ const LinkCustomization: React.FC = () => {
           isMiddleLink={false}
           text={"+ Add new link"}
           onClick={() => {
-            if (boxes.length < 6) {
+            if (boxes.length < 5) {
               setBoxes((prevBoxes) => [
                 ...prevBoxes,
                 { id: prevBoxes.length + 1 },
