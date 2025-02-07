@@ -1,3 +1,13 @@
+.handy-image-container {
+  background-color: $white;
+  max-width: 560px;
+  height: 834px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
 .social-media-content {
   display: flex;
   align-items: center;
