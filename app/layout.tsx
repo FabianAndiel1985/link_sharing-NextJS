@@ -3,6 +3,7 @@ import "./globals.scss";
 import Header from "@/components/header/Header";
 import LinkCustomization from "@/components/links/LinkCustomization";
 import { Instrument_Sans } from "next/font/google";
+import HandyImage from "@/components/links/HandyImage";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,6 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${instrumentSans.className}`}>
         <Header />
+
+        <HandyImage />
 
         <LinkCustomization />
 
