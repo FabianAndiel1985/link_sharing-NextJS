@@ -1,21 +1,55 @@
-.customization-box {
-  padding: 40px;
-  width: 808px;
-  background-color: $white;
-}
+$heightCustomization: 834px;
+$heightBox: 739px;
+$heightSavingBox: calc($heightCustomization - $heightBox);
 
-.saving-box {
+.customization {
+  border-radius: $borderRadius;
   background-color: $white;
-  padding: 24px 40px 24px 0px;
-  margin-top: 5px;
-  display: flex;
-  justify-content: flex-end;
-  height: 94px;
+  position: relative;
+  height: $heightCustomization;
+
+  width: 56.11%;
+  &__box {
+    padding: 40px 40px 0px 40px;
+    height: $heightBox;
+    overflow: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    border-bottom: $borderGrey 1px solid;
+    h1 {
+      margin-bottom: 8px;
+      @include headingFont($fontSizeHeadingM);
+    }
+
+    small {
+      color: $grey;
+      @include bodyFont($fontSizeBodyM);
+    }
+
+    button {
+      margin: 40px 0px 24px 0px;
+    }
+  }
+  &__saving-box {
+    height: $heightSavingBox;
+    padding: 24px 40px 24px 0px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: $maxTablet) {
+    width: 100%;
+  }
 }
 
 ul {
   list-style: none;
   padding-left: 5px;
+  height: 549px;
 }
 .box {
   width: 200px;

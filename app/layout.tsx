@@ -24,11 +24,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${instrumentSans.className}`}>
         <Header />
-
-        <HandyImage />
-
-        <LinkCustomization />
-
         {children}
       </body>
     </html>

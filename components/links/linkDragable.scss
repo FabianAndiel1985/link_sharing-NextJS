@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   border-radius: $borderRadius;
+  margin-bottom: 24px;
 
   &__heading {
     display: inherit;
@@ -15,7 +16,8 @@
 
     &__image-link {
       @include flexSpaceBetweenCenter();
-      width: 10.76%;
+      width: 11.76%;
+      min-width: 74px;
       @include headingFont($fontSizeHeadingS);
     }
 

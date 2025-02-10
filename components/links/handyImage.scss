@@ -6,6 +6,11 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  width: 42.89%;
+
+  @media (max-width: $maxTablet) {
+    display: none;
+  }
 }
 
 .social-media-content {

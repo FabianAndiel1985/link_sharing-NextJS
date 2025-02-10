@@ -25,60 +25,65 @@ const LinkCustomization: React.FC = () => {
 
   return (
     <>
-      <div className={"customization-box"}>
-        <p>Customize your links</p>
+      <div className={"customization"}>
+        <div className={"customization__box"}>
+          <h1>Customize your links</h1>
 
-        <small>
-          Add/edit/remove links below and then share all your profiles with the
-          world!
-        </small>
-        <br />
-        <br />
-        <Button
-          isFilled={false}
-          isMiddleLink={false}
-          text={"+ Add new link"}
-          onClick={() => {
-            if (boxes.length < 5) {
-              setBoxes((prevBoxes) => [
-                ...prevBoxes,
-                { id: prevBoxes.length + 1 },
-              ]);
-            } else {
-            }
-          }}
-        />
+          <small>
+            Add/edit/remove links below and then share all your profiles with
+            the world!
+          </small>
 
-        <DragDropContext onDragEnd={handleDragEnd}>
-          <StrictModeDroppable droppableId="boxes">
-            {(provided) => (
-              <ul ref={provided.innerRef} {...provided.droppableProps}>
-                {boxes.map(({ id }, index) => (
-                  <Draggable key={id} draggableId={id.toString()} index={index}>
-                    {(provided) => (
-                      <li
-                        ref={provided.innerRef}
-                        {...provided.dragHandleProps}
-                        {...provided.draggableProps}
-                      >
-                        <LinkDragable
-                          index={index + 1}
-                          id={id}
-                          removeHandler={removeHandler}
-                        />
-                      </li>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </ul>
-            )}
-          </StrictModeDroppable>
-        </DragDropContext>
-      </div>
+          <Button
+            isFilled={false}
+            isMiddleLink={false}
+            text={"+ Add new link"}
+            onClick={() => {
+              if (boxes.length < 5) {
+                setBoxes((prevBoxes) => [
+                  ...prevBoxes,
+                  { id: prevBoxes.length + 1 },
+                ]);
+              } else {
+              }
+            }}
+          />
 
-      <div className={"saving-box"}>
-        <Button isFilled={true} isMiddleLink={false} text={"Save"} />
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <StrictModeDroppable droppableId="boxes">
+              {(provided) => (
+                <ul ref={provided.innerRef} {...provided.droppableProps}>
+                  {boxes.map(({ id }, index) => (
+                    <Draggable
+                      key={id}
+                      draggableId={id.toString()}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <li
+                          ref={provided.innerRef}
+                          {...provided.dragHandleProps}
+                          {...provided.draggableProps}
+                        >
+                          <LinkDragable
+                            index={index + 1}
+                            id={id}
+                            removeHandler={removeHandler}
+                          />
+                        </li>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </StrictModeDroppable>
+          </DragDropContext>
+        </div>
+
+        <div className={"customization__saving-box"}>
+          <Button isFilled={true} isMiddleLink={false} text={"Save"} />
+        </div>
       </div>
     </>
   );
