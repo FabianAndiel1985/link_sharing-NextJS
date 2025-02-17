@@ -6,6 +6,7 @@ import { DragDropContext, Draggable } from "@hello-pangea/dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
 import LinkDragable from "./LinkDragable";
 import StartImage from "./StartImage";
+import { useSocialMediaContext } from "@/context/SocialMediaContext";
 
 export interface IBox {
   id: number;
@@ -28,6 +29,9 @@ const LinkCustomization: React.FC = () => {
     });
   };
 
+  const { socialMediaLinks, dispatch } = useSocialMediaContext();
+
+  console.log(socialMediaLinks);
   return (
     <>
       <div className={"customization"}>
