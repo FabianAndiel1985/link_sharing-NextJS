@@ -7,8 +7,12 @@ import { StrictModeDroppable } from "./StrictModeDroppable";
 import LinkDragable from "./LinkDragable";
 import StartImage from "./StartImage";
 
+export interface IBox {
+  id: number;
+}
+
 const LinkCustomization: React.FC = () => {
-  const handleDragEnd = (result): void => {
+  const handleDragEnd = (result: any): void => {
     if (!result.destination) return;
     const newBox = Array.from(boxes);
     const [draggedItem] = newBox.splice(result.source.index, 1);
@@ -16,7 +20,7 @@ const LinkCustomization: React.FC = () => {
     setBoxes(newBox);
   };
 
-  const [boxes, setBoxes] = useState([{ id: 0 }, { id: 1 }]);
+  const [boxes, setBoxes] = useState<IBox[]>([]);
 
   const removeHandler = (id: number): void => {
     setBoxes((prevState) => {
@@ -41,12 +45,13 @@ const LinkCustomization: React.FC = () => {
               isMiddleLink={false}
               text={"+ Add new link"}
               onClick={() => {
-                if (boxes.length < 5) {
+                if (boxes.length === 0) {
+                  setBoxes([{ id: 0 }]);
+                } else if (boxes.length < 5) {
                   setBoxes((prevBoxes) => [
                     ...prevBoxes,
                     { id: prevBoxes.length + 1 },
                   ]);
-                } else {
                 }
               }}
               fullLength={true}
