@@ -16,8 +16,7 @@
 
     &__image-link {
       @include flexSpaceBetweenCenter();
-      width: 11.76%;
-      min-width: 74px;
+      width: min(80.84px, 74px);
       @include headingFont($fontSizeHeadingS);
     }
 

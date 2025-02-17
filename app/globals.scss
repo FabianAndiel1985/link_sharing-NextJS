@@ -12,6 +12,14 @@ body {
   background-color: $lightGrey;
 }
 
+h1 {
+  @include headingFont($fontSizeHeadingM);
+}
+
+p {
+  @include bodyFont($fontSizeBodyM);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

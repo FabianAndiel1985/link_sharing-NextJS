@@ -7,21 +7,23 @@ interface IButtonProps {
   text?: string;
   icon?: ReactNode;
   onClick?: () => void;
+  fullLength?: boolean;
 }
 
-const Button = ({
+const Button: React.FC<IButtonProps> = ({
   icon,
   text,
   isFilled,
   isMiddleLink,
   onClick,
-}: IButtonProps) => {
+  fullLength,
+}: IButtonProps): ReactNode => {
   return (
     <>
       <button
         className={`button ${isFilled && " filled"} ${
           isMiddleLink && " middleLink"
-        } ${!text && icon && " icon"} `}
+        } ${!text && icon && " icon"} ${fullLength && " full-length"} `}
         onClick={onClick}
       >
         {icon}

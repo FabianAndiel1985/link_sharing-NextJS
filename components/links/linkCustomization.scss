@@ -10,7 +10,7 @@ $heightSavingBox: calc($heightCustomization - $heightBox);
 
   width: 56.11%;
   &__box {
-    padding: 40px 40px 0px 40px;
+    padding: 40px 40px 0px;
     height: $heightBox;
     overflow: scroll;
     scrollbar-width: none; /* Firefox */
@@ -22,12 +22,6 @@ $heightSavingBox: calc($heightCustomization - $heightBox);
     border-bottom: $borderGrey 1px solid;
     h1 {
       margin-bottom: 8px;
-      @include headingFont($fontSizeHeadingM);
-    }
-
-    small {
-      color: $grey;
-      @include bodyFont($fontSizeBodyM);
     }
 
     button {
