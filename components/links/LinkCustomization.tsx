@@ -29,9 +29,6 @@ const LinkCustomization: React.FC = () => {
     });
   };
 
-  const { socialMediaLinks, dispatch } = useSocialMediaContext();
-
-  console.log(socialMediaLinks);
   return (
     <>
       <div className={"customization"}>
