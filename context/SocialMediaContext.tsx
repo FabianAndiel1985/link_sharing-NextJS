@@ -44,7 +44,6 @@ const reducer = (
 
 export const useSocialMediaContext = () => {
   const context = useContext(SocialMediaContext);
-  //since context with undefined is falsy
   if (!context) {
     throw new Error("There is an issue creating the context");
   }
@@ -52,9 +51,7 @@ export const useSocialMediaContext = () => {
 };
 
 export const SocialMediaProvider = ({ children }: { children: ReactNode }) => {
-  //use Reducer ist ein Ersatz fuer useState um eine Reducer Funktion zu verwenden die mir den state managed
   const [state, dispatch] = useReducer(reducer, initialState);
-  //const [value, setValue] = useState([]);
 
   return (
     <SocialMediaContext.Provider
