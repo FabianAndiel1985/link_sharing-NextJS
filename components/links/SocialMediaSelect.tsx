@@ -10,14 +10,21 @@ import {
   IShowMenuProps,
 } from "@/types/types";
 import CustomInput from "../shared/CustomInput";
+import { useSocialMediaContext } from "@/context/SocialMediaContext";
 
 const SocialMediaSelect: React.FC = () => {
   const [menueIsOpen, setMenueIsOpen] = useState<boolean>(false);
   const [selectedPlattform, setSelectedPlattform] = useState<string>("");
 
+  const { dispatch, socialMediaLinks } = useSocialMediaContext();
+
   useEffect(() => {
     if (selectedPlattform !== "") {
       console.log("Write it in the context");
+      dispatch({
+        type: "add",
+        payload: selectedPlattform,
+      });
     }
   }, [selectedPlattform]);
 
@@ -44,13 +51,13 @@ const SocialMediaSelect: React.FC = () => {
   };
 
   const PlattformEntry: React.FC<IPlattformEntryProps> = ({
-    key,
+    id,
     icon,
     name,
   }: IPlattformEntryProps) => {
     return (
       <li
-        key={key}
+        key={id}
         onClick={() => {
           setSelectedPlattform(name);
           setMenueIsOpen(false);
@@ -94,8 +101,9 @@ const SocialMediaSelect: React.FC = () => {
         <div className={"select-menu"}>
           <ul>
             {plattformsWithIcons.map((plattform) => (
+              // eslint-disable-next-line react/jsx-key
               <PlattformEntry
-                key={plattform.id}
+                id={plattform.id}
                 icon={plattform.icon}
                 name={plattform.name}
               />

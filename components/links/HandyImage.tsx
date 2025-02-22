@@ -1,9 +1,15 @@
+"use client";
 import React, { ReactNode } from "react";
 import "./handyImage.scss";
 import Image from "next/image";
 import Github from "public/social-media-icons/icon-github.svg";
+import { useSocialMediaContext } from "@/context/SocialMediaContext";
 
 const HandyImage: React.FC = () => {
+  const { socialMediaLinks } = useSocialMediaContext();
+
+  console.log("the links " + socialMediaLinks);
+
   const RowWithSocialMedia = (): ReactNode => {
     return (
       <>
