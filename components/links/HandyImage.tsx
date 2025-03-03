@@ -1,20 +1,11 @@
 "use client";
 import React, { ReactNode } from "react";
 import "./handyImage.scss";
-import Image from "next/image";
-import Github from "public/social-media-icons/icon-github.svg";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
+import { RowWithSocialMedia } from "@/utils/HandyImage";
 
 const HandyImage: React.FC = () => {
   const { socialMediaLinks } = useSocialMediaContext();
-
-  console.log("the links " + socialMediaLinks);
-
-  /* <rect width="237" height="44" x="35" y="278" fill="#EEE" rx="8" />
-        <rect width="237" height="44" x="35" y="342" fill="#EEE" rx="8" />
-        <rect width="237" height="44" x="35" y="406" fill="#EEE" rx="8" />
-        <rect width="237" height="44" x="35" y="470" fill="#EEE" rx="8" />
-        <rect width="237" height="44" x="35" y="534" fill="#EEE" rx="8" /> */
 
   const transformSocialMediaArr = (socialMedia: any[]) => {
     const yCoordinates: number[] = [278, 342, 406, 470, 534];
@@ -24,12 +15,7 @@ const HandyImage: React.FC = () => {
       }
       return { name: null, yCoordinate: item };
     });
-    // const socialMediaWithYCorr: any[] = socialMedia.map((item: any, index) => {
-    //   if (index < socialMedia.length) {
-    //     return { name: item, yCoordinate: yCoordinates[index] };
-    //   }
-    //   return { name: null, yCoordinate: yCoordinates[index] };
-    // });
+
     return socialMediaWithYCorr;
   };
 
@@ -39,52 +25,15 @@ const HandyImage: React.FC = () => {
       <>
         {rowContent.map((item: any, index: number) => {
           if (item.name != null) {
-            //return <p key={index}> name</p>;
-            return <RowWithSocialMedia name={item.name} />;
+            return (
+              <RowWithSocialMedia
+                name={item.name}
+                yCoordinate={item.yCoordinate}
+              />
+            );
           }
           return null;
         })}
-      </>
-    );
-  };
-
-  interface RowWithSocialMedia {
-    name: string;
-    id: number;
-  }
-
-  const RowWithSocialMedia = ({ name, id }: RowWithSocialMedia): ReactNode => {
-    return (
-      <>
-        <rect
-          key={id}
-          width="237"
-          height="44"
-          x="35"
-          y="278"
-          fill="#EEE"
-          rx="8"
-        />
-        <foreignObject x="35" y="278" width="237" height="44">
-          <div className="social-media-content">
-            <div>
-              {/* <Github /> */}
-              <Image
-                src={`/social-media-icons/icon-${name}.svg`}
-                width={16}
-                height={16}
-                alt={"icon-" + name}
-              />
-              <span>{name}</span>
-            </div>
-            <Image
-              src={"/icon-arrow-right.svg"}
-              width="16"
-              height="16"
-              alt="arrow-right"
-            />
-          </div>
-        </foreignObject>
       </>
     );
   };
@@ -112,11 +61,6 @@ const HandyImage: React.FC = () => {
           <rect width="160" height="16" x="73.5" y="185" fill="#EEE" rx="8" />
           <rect width="72" height="8" x="117.5" y="214" fill="#EEE" rx="4" />
           {creatRows(socialMediaLinks)}
-          {/* <rect width="237" height="44" x="35" y="278" fill="#EEE" rx="8" />
-        <rect width="237" height="44" x="35" y="342" fill="#EEE" rx="8" />
-        <rect width="237" height="44" x="35" y="406" fill="#EEE" rx="8" />
-        <rect width="237" height="44" x="35" y="470" fill="#EEE" rx="8" />
-        <rect width="237" height="44" x="35" y="534" fill="#EEE" rx="8" /> */}
         </svg>
       </div>
     </>

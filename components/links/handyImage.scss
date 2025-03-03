@@ -22,17 +22,13 @@
   color: $white;
   padding: 0px 16px;
 
-  div {
+  &__main-row {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    svg {
-      g {
-        path {
-          fill: white;
-        }
-      }
+    &__svg-image {
+      filter: invert(100%) brightness(1000%);
     }
 
     span {
