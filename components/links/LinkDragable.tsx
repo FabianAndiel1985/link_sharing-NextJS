@@ -6,14 +6,12 @@ import { ReactNode } from "react";
 
 export interface DraggableProps {
   index: number;
-  id: number;
-  removeHandler: (id: number) => void;
+  removeHandler: () => void;
 }
 
 const LinkDragable: React.FC<DraggableProps> = ({
   index,
   removeHandler,
-  id,
 }: DraggableProps) => {
   const MagnifiyingGlass: () => ReactNode = () => {
     return (
@@ -43,7 +41,7 @@ const LinkDragable: React.FC<DraggableProps> = ({
           </div>
           <p
             onClick={() => {
-              removeHandler(id);
+              removeHandler();
             }}
           >
             Remove

@@ -6,10 +6,10 @@ import { DragDropContext, Draggable } from "@hello-pangea/dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
 import LinkDragable from "./LinkDragable";
 import StartImage from "./StartImage";
-import { useSocialMediaContext } from "@/context/SocialMediaContext";
+import { v4 as uuidv4 } from "uuid";
 
 export interface IBox {
-  id: number;
+  id: string;
 }
 
 const LinkCustomization: React.FC = () => {
@@ -23,7 +23,7 @@ const LinkCustomization: React.FC = () => {
 
   const [boxes, setBoxes] = useState<IBox[]>([]);
 
-  const removeHandler = (id: number): void => {
+  const removeHandler = (id: string): void => {
     setBoxes((prevState) => {
       return [...prevState.filter((item) => item.id != id)];
     });
@@ -46,13 +46,11 @@ const LinkCustomization: React.FC = () => {
               isMiddleLink={false}
               text={"+ Add new link"}
               onClick={() => {
+                //UUIDV4 cause this list will be sorted
                 if (boxes.length === 0) {
-                  setBoxes([{ id: 0 }]);
+                  setBoxes([{ id: uuidv4() }]);
                 } else if (boxes.length < 5) {
-                  setBoxes((prevBoxes) => [
-                    ...prevBoxes,
-                    { id: prevBoxes.length + 1 },
-                  ]);
+                  setBoxes((prevBoxes) => [...prevBoxes, { id: uuidv4() }]);
                 }
               }}
               fullLength={true}
@@ -78,8 +76,9 @@ const LinkCustomization: React.FC = () => {
                           >
                             <LinkDragable
                               index={index + 1}
-                              id={id}
-                              removeHandler={removeHandler}
+                              removeHandler={() => {
+                                removeHandler(id);
+                              }}
                             />
                           </li>
                         )}
