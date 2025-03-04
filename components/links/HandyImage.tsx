@@ -6,8 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 import { EmptyRow, RowWithSocialMedia } from "@/utils/handyImage";
 
 const HandyImage: React.FC = () => {
-  const { socialMediaLinks } = useSocialMediaContext();
   const Y_COORDINATES: number[] = [278, 342, 406, 470, 534];
+
+  const { socialMediaLinks } = useSocialMediaContext();
 
   const transformSocialMediaArr = (
     socialMedia: any[],
@@ -15,7 +16,11 @@ const HandyImage: React.FC = () => {
   ) => {
     const socialMediaWithYCorr: any[] = yCoordinates.map((item: any, index) => {
       if (index < socialMedia.length) {
-        return { id: uuidv4(), name: socialMedia[index], yCoordinate: item };
+        return {
+          id: socialMedia[index].id,
+          name: socialMedia[index].name,
+          yCoordinate: item,
+        };
       }
       return { id: uuidv4(), name: null, yCoordinate: item };
     });
@@ -28,17 +33,19 @@ const HandyImage: React.FC = () => {
       socialMediaLinks,
       Y_COORDINATES
     );
-    console.log(rowContent);
+
     return (
       <>
         {rowContent.map((item: any, index: number) => {
           if (item.name != null) {
             return (
-              <RowWithSocialMedia
-                name={item.name}
-                yCoordinate={item.yCoordinate}
-                key={item.id}
-              />
+              <>
+                <RowWithSocialMedia
+                  name={item.name}
+                  yCoordinate={item.yCoordinate}
+                  key={item.id}
+                />
+              </>
             );
           } else {
             return <EmptyRow yCoordinate={item.yCoordinate} key={item.id} />;

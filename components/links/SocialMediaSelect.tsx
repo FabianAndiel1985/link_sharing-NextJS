@@ -12,15 +12,27 @@ import {
 import CustomInput from "../shared/CustomInput";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
 
-const SocialMediaSelect: React.FC = () => {
+interface ISocialMediaSelectProps {
+  parentKey: string;
+}
+
+export interface ISelectedPlattform {
+  id: string;
+  name: string;
+}
+
+const SocialMediaSelect: React.FC<ISocialMediaSelectProps> = ({
+  parentKey,
+}: ISocialMediaSelectProps) => {
   const [menueIsOpen, setMenueIsOpen] = useState<boolean>(false);
-  const [selectedPlattform, setSelectedPlattform] = useState<string>("");
+
+  const [selectedPlattform, setSelectedPlattform] =
+    useState<ISelectedPlattform | null>(null);
 
   const { dispatch, socialMediaLinks } = useSocialMediaContext();
 
   useEffect(() => {
-    if (selectedPlattform !== "") {
-      console.log("Write it in the context");
+    if (selectedPlattform) {
       dispatch({
         type: "add",
         payload: selectedPlattform,
@@ -52,15 +64,16 @@ const SocialMediaSelect: React.FC = () => {
   };
 
   const PlattformEntry: React.FC<IPlattformEntryProps> = ({
-    id,
     icon,
     name,
   }: IPlattformEntryProps) => {
     return (
       <li
-        key={id}
         onClick={() => {
-          setSelectedPlattform(name);
+          setSelectedPlattform({
+            name: name,
+            id: parentKey,
+          });
           setMenueIsOpen(false);
         }}
       >
@@ -80,7 +93,7 @@ const SocialMediaSelect: React.FC = () => {
           setMenueIsOpen((prevState) => !prevState);
         }}
       >
-        {selectedPlattform !== "" ? (
+        {selectedPlattform ? (
           <>
             <div className={"selected-plattform"}>
               <Image
@@ -89,7 +102,7 @@ const SocialMediaSelect: React.FC = () => {
                 width={16}
                 alt={"icon-" + selectedPlattform}
               />
-              <p> {selectedPlattform} </p>
+              <p> {selectedPlattform.name} </p>
             </div>
           </>
         ) : (
@@ -102,11 +115,10 @@ const SocialMediaSelect: React.FC = () => {
         <div className={"select-menu"}>
           <ul>
             {plattformsWithIcons.map((plattform) => (
-              // eslint-disable-next-line react/jsx-key
               <PlattformEntry
-                id={plattform.id}
                 icon={plattform.icon}
                 name={plattform.name}
+                key={plattform.id}
               />
             ))}
           </ul>

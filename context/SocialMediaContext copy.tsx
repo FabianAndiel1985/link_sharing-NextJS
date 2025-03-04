@@ -1,6 +1,5 @@
 "use client";
 
-import { ISelectedPlattform } from "@/components/links/SocialMediaSelect";
 import { createContext, ReactNode, useContext, useReducer } from "react";
 
 interface ISoicalMediaLinkItem {
@@ -9,25 +8,25 @@ interface ISoicalMediaLinkItem {
 }
 
 interface ISocialMediaLinks {
-  socialMediaLinks: ISelectedPlattform[];
+  socialMediaLinks: ISoicalMediaLinkItem[];
 }
 
 interface ActionTypes {
   type: "add" | "remove";
-  payload: ISelectedPlattform;
+  payload: any;
 }
 
 interface SocialMediaContextType extends ISocialMediaLinks {
   dispatch: React.Dispatch<ActionTypes>;
 }
 
-export const SocialMediaContext = createContext<SocialMediaContextType | null>(
-  null
-);
+export const SocialMediaContext = createContext<
+  SocialMediaContextType | undefined
+>(undefined);
 
 const initialState: ISocialMediaLinks = { socialMediaLinks: [] };
 
-/*const reducer = (
+const reducer = (
   state: ISocialMediaLinks,
   action: ActionTypes
 ): ISocialMediaLinks => {
@@ -36,41 +35,6 @@ const initialState: ISocialMediaLinks = { socialMediaLinks: [] };
       return {
         socialMediaLinks: [...state.socialMediaLinks, action.payload],
       };
-    case "remove":
-    //todo
-    default:
-      throw new Error();
-  }
-}; */
-
-const checkIfSocialMediaWasChoosen = (
-  dispatchedObject: ISelectedPlattform,
-  state: ISocialMediaLinks
-) => {
-  const indexOfIdOccurence: number = state.socialMediaLinks.findIndex(
-    (item: any) => item.id == dispatchedObject.id
-  );
-
-  if (indexOfIdOccurence != -1) {
-    let tempSocialMediaLinks = [...state.socialMediaLinks];
-    tempSocialMediaLinks[indexOfIdOccurence] = dispatchedObject;
-    return { socialMediaLinks: tempSocialMediaLinks };
-  } else {
-    return { socialMediaLinks: [...state.socialMediaLinks, dispatchedObject] };
-  }
-};
-
-const reducer = (
-  state: ISocialMediaLinks,
-  action: ActionTypes
-): ISocialMediaLinks => {
-  switch (action.type) {
-    case "add":
-      const socialMediaLinks = checkIfSocialMediaWasChoosen(
-        action.payload,
-        state
-      );
-      return socialMediaLinks;
     case "remove":
     //todo
     default:

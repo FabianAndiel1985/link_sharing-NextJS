@@ -3,15 +3,18 @@ import "./linkDragable.scss";
 import SocialMediaSelect from "./SocialMediaSelect";
 import CustomInput from "../shared/CustomInput";
 import { ReactNode } from "react";
+import { ISelectedPlattform } from "./LinkCustomization";
 
 export interface DraggableProps {
   index: number;
   removeHandler: () => void;
+  parentKey: string;
 }
 
 const LinkDragable: React.FC<DraggableProps> = ({
   index,
   removeHandler,
+  parentKey,
 }: DraggableProps) => {
   const MagnifiyingGlass: () => ReactNode = () => {
     return (
@@ -48,7 +51,7 @@ const LinkDragable: React.FC<DraggableProps> = ({
           </p>
         </div>
         <label> Platform</label>
-        <SocialMediaSelect />
+        <SocialMediaSelect parentKey={parentKey} />
         <label htmlFor="input-link-entry"> Link </label>
         <CustomInput>
           <MagnifiyingGlass />

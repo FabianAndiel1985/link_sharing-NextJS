@@ -5,7 +5,6 @@ export interface IPlattform {
 }
 
 export interface IPlattformEntryProps {
-  id: number;
   icon: string;
   name: string;
 }

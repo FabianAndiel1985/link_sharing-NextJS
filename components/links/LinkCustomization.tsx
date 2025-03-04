@@ -12,6 +12,11 @@ export interface IBox {
   id: string;
 }
 
+export interface ISelectedPlattform {
+  id: string;
+  name: string;
+}
+
 const LinkCustomization: React.FC = () => {
   const handleDragEnd = (result: any): void => {
     if (!result.destination) return;
@@ -22,6 +27,8 @@ const LinkCustomization: React.FC = () => {
   };
 
   const [boxes, setBoxes] = useState<IBox[]>([]);
+
+  //TODO dispatch jedes Mal wenn Array der ausgewählten Social Media sich verändert hat
 
   const removeHandler = (id: string): void => {
     setBoxes((prevState) => {
@@ -79,6 +86,7 @@ const LinkCustomization: React.FC = () => {
                               removeHandler={() => {
                                 removeHandler(id);
                               }}
+                              parentKey={id}
                             />
                           </li>
                         )}
