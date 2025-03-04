@@ -31,6 +31,7 @@ const SocialMediaSelect: React.FC = () => {
   const plattformsWithIcons: IPlattform[] = platforms.map(
     (plattform, index) => {
       return {
+        //taking the index because its a stable list
         id: index,
         name: plattform,
         icon: "social-media-icons/icon-" + plattform + ".svg",
