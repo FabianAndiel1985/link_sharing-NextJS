@@ -14,6 +14,8 @@ import { useSocialMediaContext } from "@/context/SocialMediaContext";
 
 interface ISocialMediaSelectProps {
   parentKey: string;
+  setSelectedPlattform: (param: ISelectedPlattform) => void;
+  selectedPlattform: ISelectedPlattform | null;
 }
 
 export interface ISelectedPlattform {
@@ -23,15 +25,14 @@ export interface ISelectedPlattform {
 
 const SocialMediaSelect: React.FC<ISocialMediaSelectProps> = ({
   parentKey,
+  setSelectedPlattform,
+  selectedPlattform,
 }: ISocialMediaSelectProps) => {
   const [menueIsOpen, setMenueIsOpen] = useState<boolean>(false);
 
-  const [selectedPlattform, setSelectedPlattform] =
-    useState<ISelectedPlattform | null>(null);
-
   const { dispatch, socialMediaLinks } = useSocialMediaContext();
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (selectedPlattform) {
       dispatch({
         type: "add",
@@ -39,6 +40,8 @@ const SocialMediaSelect: React.FC<ISocialMediaSelectProps> = ({
       });
     }
   }, [selectedPlattform]);
+
+  */
 
   const plattformsWithIcons: IPlattform[] = platforms.map(
     (plattform, index) => {
@@ -97,7 +100,9 @@ const SocialMediaSelect: React.FC<ISocialMediaSelectProps> = ({
           <>
             <div className={"selected-plattform"}>
               <Image
-                src={"social-media-icons/icon-" + selectedPlattform + ".svg"}
+                src={
+                  "social-media-icons/icon-" + selectedPlattform.name + ".svg"
+                }
                 height={16}
                 width={16}
                 alt={"icon-" + selectedPlattform}

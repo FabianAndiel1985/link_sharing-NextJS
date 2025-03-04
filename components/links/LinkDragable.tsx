@@ -2,12 +2,12 @@ import Image from "next/image";
 import "./linkDragable.scss";
 import SocialMediaSelect from "./SocialMediaSelect";
 import CustomInput from "../shared/CustomInput";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { ISelectedPlattform } from "./LinkCustomization";
 
 export interface DraggableProps {
   index: number;
-  removeHandler: () => void;
+  removeHandler: (param: ISelectedPlattform | null, id: string) => void;
   parentKey: string;
 }
 
@@ -16,6 +16,9 @@ const LinkDragable: React.FC<DraggableProps> = ({
   removeHandler,
   parentKey,
 }: DraggableProps) => {
+  const [selectedPlattform, setSelectedPlattform] =
+    useState<ISelectedPlattform | null>(null);
+
   const MagnifiyingGlass: () => ReactNode = () => {
     return (
       <>
@@ -44,14 +47,18 @@ const LinkDragable: React.FC<DraggableProps> = ({
           </div>
           <p
             onClick={() => {
-              removeHandler();
+              removeHandler(selectedPlattform, parentKey);
             }}
           >
             Remove
           </p>
         </div>
         <label> Platform</label>
-        <SocialMediaSelect parentKey={parentKey} />
+        <SocialMediaSelect
+          parentKey={parentKey}
+          setSelectedPlattform={setSelectedPlattform}
+          selectedPlattform={selectedPlattform}
+        />
         <label htmlFor="input-link-entry"> Link </label>
         <CustomInput>
           <MagnifiyingGlass />

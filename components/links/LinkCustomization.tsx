@@ -7,6 +7,7 @@ import { StrictModeDroppable } from "./StrictModeDroppable";
 import LinkDragable from "./LinkDragable";
 import StartImage from "./StartImage";
 import { v4 as uuidv4 } from "uuid";
+import { useSocialMediaContext } from "@/context/SocialMediaContext";
 
 export interface IBox {
   id: string;
@@ -18,22 +19,33 @@ export interface ISelectedPlattform {
 }
 
 const LinkCustomization: React.FC = () => {
+  const [boxes, setBoxes] = useState<IBox[]>([]);
+
+  const { dispatch } = useSocialMediaContext();
+
+  //TODO dispatch wenn on click bei remove
+
+  const removeHandler = (
+    selectedPlattform: ISelectedPlattform | null,
+    id: string
+  ): void => {
+    setBoxes((prevState) => {
+      return [...prevState.filter((item) => item.id != id)];
+    });
+    if (selectedPlattform != null) {
+      dispatch({
+        type: "remove",
+        payload: selectedPlattform,
+      });
+    }
+  };
+
   const handleDragEnd = (result: any): void => {
     if (!result.destination) return;
     const newBox = Array.from(boxes);
     const [draggedItem] = newBox.splice(result.source.index, 1);
     newBox.splice(result.destination.index, 0, draggedItem);
     setBoxes(newBox);
-  };
-
-  const [boxes, setBoxes] = useState<IBox[]>([]);
-
-  //TODO dispatch jedes Mal wenn Array der ausgewählten Social Media sich verändert hat
-
-  const removeHandler = (id: string): void => {
-    setBoxes((prevState) => {
-      return [...prevState.filter((item) => item.id != id)];
-    });
   };
 
   return (
@@ -83,9 +95,7 @@ const LinkCustomization: React.FC = () => {
                           >
                             <LinkDragable
                               index={index + 1}
-                              removeHandler={() => {
-                                removeHandler(id);
-                              }}
+                              removeHandler={removeHandler}
                               parentKey={id}
                             />
                           </li>
