@@ -2,25 +2,33 @@
 import React, { ReactNode } from "react";
 import "./handyImage.scss";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
-import { RowWithSocialMedia } from "@/utils/HandyImage";
+import { v4 as uuidv4 } from "uuid";
+import { EmptyRow, RowWithSocialMedia } from "@/utils/handyImage";
 
 const HandyImage: React.FC = () => {
   const { socialMediaLinks } = useSocialMediaContext();
+  const Y_COORDINATES: number[] = [278, 342, 406, 470, 534];
 
-  const transformSocialMediaArr = (socialMedia: any[]) => {
-    const yCoordinates: number[] = [278, 342, 406, 470, 534];
+  const transformSocialMediaArr = (
+    socialMedia: any[],
+    yCoordinates: number[]
+  ) => {
     const socialMediaWithYCorr: any[] = yCoordinates.map((item: any, index) => {
       if (index < socialMedia.length) {
-        return { id: index + 1, name: socialMedia[index], yCoordinate: item };
+        return { id: uuidv4(), name: socialMedia[index], yCoordinate: item };
       }
-      return { name: null, yCoordinate: item };
+      return { id: uuidv4(), name: null, yCoordinate: item };
     });
 
     return socialMediaWithYCorr;
   };
 
   const creatRows = (socialMediaLinks: any[]): ReactNode => {
-    const rowContent: any[] = transformSocialMediaArr(socialMediaLinks);
+    const rowContent: any[] = transformSocialMediaArr(
+      socialMediaLinks,
+      Y_COORDINATES
+    );
+    console.log(rowContent);
     return (
       <>
         {rowContent.map((item: any, index: number) => {
@@ -29,10 +37,12 @@ const HandyImage: React.FC = () => {
               <RowWithSocialMedia
                 name={item.name}
                 yCoordinate={item.yCoordinate}
+                key={item.id}
               />
             );
+          } else {
+            return <EmptyRow yCoordinate={item.yCoordinate} key={item.id} />;
           }
-          return null;
         })}
       </>
     );
