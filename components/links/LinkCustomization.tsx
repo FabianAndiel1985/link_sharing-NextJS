@@ -8,11 +8,7 @@ import LinkDragable from "./LinkDragable";
 import StartImage from "./StartImage";
 import { v4 as uuidv4 } from "uuid";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
-import { ISelectedPlattform } from "@/types/types";
-
-export interface IBox {
-  id: string;
-}
+import { IBox, ISelectedPlattform } from "@/types/types";
 
 const LinkCustomization: React.FC = () => {
   const [boxes, setBoxes] = useState<IBox[]>([]);

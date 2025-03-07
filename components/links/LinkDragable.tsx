@@ -3,14 +3,8 @@ import "./linkDragable.scss";
 import SocialMediaSelect from "./SocialMediaSelect";
 import CustomInput from "../shared/CustomInput";
 import { ReactNode, useEffect, useState } from "react";
-import { ISelectedPlattform } from "@/types/types";
+import { DraggableProps, ISelectedPlattform } from "@/types/types";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
-
-export interface DraggableProps {
-  index: number;
-  removeHandler: (param: ISelectedPlattform | null, id: string) => void;
-  parentKey: string;
-}
 
 const LinkDragable: React.FC<DraggableProps> = ({
   index,

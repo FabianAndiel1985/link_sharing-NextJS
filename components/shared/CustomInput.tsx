@@ -1,10 +1,6 @@
+import { CustomInputProps } from "@/types/types";
 import "./customInput.scss";
 import React, { ReactNode } from "react";
-
-interface CustomInputProps {
-  children?: ReactNode;
-  clickHandler?: () => void;
-}
 
 const CustomInput = ({ children, clickHandler }: CustomInputProps) => {
   return (

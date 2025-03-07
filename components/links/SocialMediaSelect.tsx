@@ -7,16 +7,10 @@ import { platforms } from "@/data/mocks";
 import {
   IPlattform,
   IPlattformEntryProps,
-  ISelectedPlattform,
   IShowMenuProps,
+  ISocialMediaSelectProps,
 } from "@/types/types";
 import CustomInput from "../shared/CustomInput";
-
-interface ISocialMediaSelectProps {
-  parentKey: string;
-  setSelectedPlattform: (param: ISelectedPlattform) => void;
-  selectedPlattform: ISelectedPlattform | null;
-}
 
 const SocialMediaSelect: React.FC<ISocialMediaSelectProps> = ({
   parentKey,

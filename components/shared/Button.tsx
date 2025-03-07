@@ -1,14 +1,6 @@
 import React, { ReactNode } from "react";
 import "./button.scss";
-
-interface IButtonProps {
-  isFilled: boolean;
-  isMiddleLink: boolean;
-  text?: string;
-  icon?: ReactNode;
-  onClick?: () => void;
-  fullLength?: boolean;
-}
+import { IButtonProps } from "@/types/types";
 
 const Button: React.FC<IButtonProps> = ({
   icon,

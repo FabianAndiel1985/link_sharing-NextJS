@@ -1,21 +1,24 @@
-export interface IPlattform {
-  id: number;
-  name: string;
-  icon: string;
-}
+import { ReactNode } from "react";
 
-export interface IPlattformEntryProps {
-  icon: string;
-  name: string;
-}
-
-export interface IShowMenuProps {
-  isOpen: boolean;
-}
+//========= shared
 
 export interface ISelectedPlattform {
   id: string | number;
   name: string;
+}
+
+//==== link customization component ========================================
+
+export interface IBox {
+  id: string;
+}
+
+//==== link dragablecomponent ========================================
+
+export interface DraggableProps {
+  index: number;
+  removeHandler: (param: ISelectedPlattform | null, id: string) => void;
+  parentKey: string;
 }
 
 //==== handy image component ========================================
@@ -29,6 +32,51 @@ export interface IRowWithSocialMedia extends IEmptyRow {
 }
 
 export interface IRowWithSocialMediaYCoor extends IRowWithSocialMedia {
+  id: number;
+}
+
+//==== headerbar component ========================================
+
+export interface HeaderBarProps {
+  children: ReactNode;
+}
+
+//==== button component ========================================
+
+export interface IButtonProps {
+  isFilled: boolean;
+  isMiddleLink: boolean;
+  text?: string;
+  icon?: ReactNode;
+  onClick?: () => void;
+  fullLength?: boolean;
+}
+
+//==== custom input component ========================================
+
+export interface CustomInputProps {
+  children?: ReactNode;
+  clickHandler?: () => void;
+}
+
+//==== social media select component ========================================
+
+export interface ISocialMediaSelectProps {
+  parentKey: string;
+  setSelectedPlattform: (param: ISelectedPlattform) => void;
+  selectedPlattform: ISelectedPlattform | null;
+}
+
+export interface IShowMenuProps {
+  isOpen: boolean;
+}
+
+export interface IPlattformEntryProps {
+  icon: string;
+  name: string;
+}
+
+export interface IPlattform extends IPlattformEntryProps {
   id: number;
 }
 

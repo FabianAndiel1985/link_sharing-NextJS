@@ -1,9 +1,5 @@
-import { ReactNode } from "react";
 import "./headerbar.scss";
-
-interface HeaderBarProps {
-  children: ReactNode;
-}
+import { HeaderBarProps } from "@/types/types";
 
 const HeaderBar = ({ children }: HeaderBarProps) => {
   return (
