@@ -1,4 +1,9 @@
-import { IEmptyRow, IRowWithSocialMedia } from "@/types/types";
+import {
+  IEmptyRow,
+  IRowWithSocialMedia,
+  IRowWithSocialMediaYCoor,
+  ISelectedPlattform,
+} from "@/types/types";
 import { ReactNode } from "react";
 import Image from "next/image";
 
@@ -123,14 +128,20 @@ export const EmptyRow = ({ yCoordinate }: IEmptyRow): ReactNode => {
 };
 
 export const transformSocialMediaArr = (
-  socialMedia: any[],
-  yCoordinates: any[]
+  socialMedia: ISelectedPlattform[],
+  yCoordinates: number[]
 ) => {
-  const socialMediaWithYCorr: any[] = yCoordinates.map((item: any, index) => {
-    if (index < socialMedia.length) {
-      return { id: index + 1, name: socialMedia[index], yCoordinate: item };
+  const socialMediaWithYCorr: IRowWithSocialMediaYCoor[] = yCoordinates.map(
+    (item: number, index) => {
+      if (index < socialMedia.length) {
+        return {
+          id: index + 1,
+          name: socialMedia[index].name,
+          yCoordinate: item,
+        };
+      }
+      return { id: index + 1, name: null, yCoordinate: item };
     }
-    return { name: null, yCoordinate: item };
-  });
+  );
   return socialMediaWithYCorr;
 };

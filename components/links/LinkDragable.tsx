@@ -2,8 +2,9 @@ import Image from "next/image";
 import "./linkDragable.scss";
 import SocialMediaSelect from "./SocialMediaSelect";
 import CustomInput from "../shared/CustomInput";
-import { ReactNode, useState } from "react";
-import { ISelectedPlattform } from "./LinkCustomization";
+import { ReactNode, useEffect, useState } from "react";
+import { ISelectedPlattform } from "@/types/types";
+import { useSocialMediaContext } from "@/context/SocialMediaContext";
 
 export interface DraggableProps {
   index: number;
@@ -18,6 +19,16 @@ const LinkDragable: React.FC<DraggableProps> = ({
 }: DraggableProps) => {
   const [selectedPlattform, setSelectedPlattform] =
     useState<ISelectedPlattform | null>(null);
+  const { dispatch } = useSocialMediaContext();
+
+  useEffect(() => {
+    if (selectedPlattform) {
+      dispatch({
+        type: "add",
+        payload: selectedPlattform,
+      });
+    }
+  }, [selectedPlattform]);
 
   const MagnifiyingGlass: () => ReactNode = () => {
     return (

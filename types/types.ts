@@ -13,12 +13,36 @@ export interface IShowMenuProps {
   isOpen: boolean;
 }
 
-//==== handy image component ========================================0
+export interface ISelectedPlattform {
+  id: string | number;
+  name: string;
+}
+
+//==== handy image component ========================================
 
 export interface IEmptyRow {
   yCoordinate: number;
 }
 
 export interface IRowWithSocialMedia extends IEmptyRow {
-  name: string;
+  name: string | null;
+}
+
+export interface IRowWithSocialMediaYCoor extends IRowWithSocialMedia {
+  id: number;
+}
+
+//==== context ========================================
+
+export interface ActionTypes {
+  type: "add" | "remove";
+  payload: ISelectedPlattform;
+}
+
+export interface ISocialMediaLinks {
+  socialMediaLinks: ISelectedPlattform[];
+}
+
+export interface SocialMediaContextType extends ISocialMediaLinks {
+  dispatch: React.Dispatch<ActionTypes>;
 }

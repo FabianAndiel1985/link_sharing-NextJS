@@ -2,41 +2,28 @@
 import React, { ReactNode } from "react";
 import "./handyImage.scss";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
-import { v4 as uuidv4 } from "uuid";
-import { EmptyRow, RowWithSocialMedia } from "@/utils/handyImage";
+
+import {
+  EmptyRow,
+  RowWithSocialMedia,
+  transformSocialMediaArr,
+} from "@/utils/handyImage";
+import { IRowWithSocialMediaYCoor, ISelectedPlattform } from "@/types/types";
 
 const HandyImage: React.FC = () => {
   const Y_COORDINATES: number[] = [278, 342, 406, 470, 534];
 
   const { socialMediaLinks } = useSocialMediaContext();
 
-  const transformSocialMediaArr = (
-    socialMedia: any[],
-    yCoordinates: number[]
-  ) => {
-    const socialMediaWithYCorr: any[] = yCoordinates.map((item: any, index) => {
-      if (index < socialMedia.length) {
-        return {
-          id: socialMedia[index].id,
-          name: socialMedia[index].name,
-          yCoordinate: item,
-        };
-      }
-      return { id: uuidv4(), name: null, yCoordinate: item };
-    });
-
-    return socialMediaWithYCorr;
-  };
-
-  const creatRows = (socialMediaLinks: any[]): ReactNode => {
-    const rowContent: any[] = transformSocialMediaArr(
+  const creatRows = (socialMediaLinks: ISelectedPlattform[]): ReactNode => {
+    const rowContent: IRowWithSocialMediaYCoor[] = transformSocialMediaArr(
       socialMediaLinks,
       Y_COORDINATES
     );
 
     return (
       <>
-        {rowContent.map((item: any, index: number) => {
+        {rowContent.map((item: IRowWithSocialMediaYCoor, index: number) => {
           if (item.name != null) {
             return (
               <>

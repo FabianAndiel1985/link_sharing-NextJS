@@ -2,25 +2,20 @@
 import Image from "next/image";
 import "./socialMediaSelect.scss";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { platforms } from "@/data/mocks";
 import {
   IPlattform,
   IPlattformEntryProps,
+  ISelectedPlattform,
   IShowMenuProps,
 } from "@/types/types";
 import CustomInput from "../shared/CustomInput";
-import { useSocialMediaContext } from "@/context/SocialMediaContext";
 
 interface ISocialMediaSelectProps {
   parentKey: string;
   setSelectedPlattform: (param: ISelectedPlattform) => void;
   selectedPlattform: ISelectedPlattform | null;
-}
-
-export interface ISelectedPlattform {
-  id: string;
-  name: string;
 }
 
 const SocialMediaSelect: React.FC<ISocialMediaSelectProps> = ({
@@ -29,19 +24,6 @@ const SocialMediaSelect: React.FC<ISocialMediaSelectProps> = ({
   selectedPlattform,
 }: ISocialMediaSelectProps) => {
   const [menueIsOpen, setMenueIsOpen] = useState<boolean>(false);
-
-  const { dispatch, socialMediaLinks } = useSocialMediaContext();
-
-  /* useEffect(() => {
-    if (selectedPlattform) {
-      dispatch({
-        type: "add",
-        payload: selectedPlattform,
-      });
-    }
-  }, [selectedPlattform]);
-
-  */
 
   const plattformsWithIcons: IPlattform[] = platforms.map(
     (plattform, index) => {

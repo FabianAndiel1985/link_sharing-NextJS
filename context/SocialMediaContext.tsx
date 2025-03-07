@@ -1,25 +1,12 @@
 "use client";
 
-import { ISelectedPlattform } from "@/components/links/SocialMediaSelect";
+import {
+  ActionTypes,
+  ISelectedPlattform,
+  ISocialMediaLinks,
+  SocialMediaContextType,
+} from "@/types/types";
 import { createContext, ReactNode, useContext, useReducer } from "react";
-
-interface ISoicalMediaLinkItem {
-  name: string;
-  linkToIcon: string;
-}
-
-interface ISocialMediaLinks {
-  socialMediaLinks: ISelectedPlattform[];
-}
-
-interface ActionTypes {
-  type: "add" | "remove";
-  payload: ISelectedPlattform;
-}
-
-interface SocialMediaContextType extends ISocialMediaLinks {
-  dispatch: React.Dispatch<ActionTypes>;
-}
 
 export const SocialMediaContext = createContext<SocialMediaContextType | null>(
   null
@@ -27,28 +14,12 @@ export const SocialMediaContext = createContext<SocialMediaContextType | null>(
 
 const initialState: ISocialMediaLinks = { socialMediaLinks: [] };
 
-/*const reducer = (
-  state: ISocialMediaLinks,
-  action: ActionTypes
-): ISocialMediaLinks => {
-  switch (action.type) {
-    case "add":
-      return {
-        socialMediaLinks: [...state.socialMediaLinks, action.payload],
-      };
-    case "remove":
-    //todo
-    default:
-      throw new Error();
-  }
-}; */
-
 const checkIfSocialMediaWasChoosen = (
   dispatchedObject: ISelectedPlattform,
   state: ISocialMediaLinks
 ) => {
   const indexOfIdOccurence: number = state.socialMediaLinks.findIndex(
-    (item: any) => item.id == dispatchedObject.id
+    (item: ISelectedPlattform) => item.id == dispatchedObject.id
   );
 
   if (indexOfIdOccurence != -1) {

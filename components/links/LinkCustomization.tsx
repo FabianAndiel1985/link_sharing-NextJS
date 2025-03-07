@@ -8,14 +8,10 @@ import LinkDragable from "./LinkDragable";
 import StartImage from "./StartImage";
 import { v4 as uuidv4 } from "uuid";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
+import { ISelectedPlattform } from "@/types/types";
 
 export interface IBox {
   id: string;
-}
-
-export interface ISelectedPlattform {
-  id: string;
-  name: string;
 }
 
 const LinkCustomization: React.FC = () => {
