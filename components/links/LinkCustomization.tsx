@@ -36,6 +36,8 @@ const LinkCustomization: React.FC = () => {
     const [draggedItem] = newBox.splice(result.source.index, 1);
     newBox.splice(result.destination.index, 0, draggedItem);
     setBoxes(newBox);
+    //TODO synchronisation with array in context - array is new box
+    //dispatch if length of newBox
   };
 
   return (
