@@ -17,7 +17,7 @@ const initialState: ISocialMediaLinks = { socialMediaLinks: [] };
 const checkIfSocialMediaWasChoosen = (
   dispatchedObject: ISelectedPlattform,
   state: ISocialMediaLinks
-) => {
+): ISocialMediaLinks => {
   const indexOfIdOccurence: number = state.socialMediaLinks.findIndex(
     (item: ISelectedPlattform) => item.id == dispatchedObject.id
   );
@@ -29,6 +29,18 @@ const checkIfSocialMediaWasChoosen = (
   } else {
     return { socialMediaLinks: [...state.socialMediaLinks, dispatchedObject] };
   }
+};
+
+const removeChosenSocialMedia = (
+  dispatchedObject: ISelectedPlattform,
+  state: ISocialMediaLinks
+): ISocialMediaLinks => {
+  const indexOfIdOccurence: number = state.socialMediaLinks.findIndex(
+    (item: ISelectedPlattform) => item.id == dispatchedObject.id
+  );
+  let tempSocialMediaLinks = [...state.socialMediaLinks];
+  tempSocialMediaLinks.splice(indexOfIdOccurence, 1);
+  return { socialMediaLinks: tempSocialMediaLinks };
 };
 
 const reducer = (
@@ -43,7 +55,7 @@ const reducer = (
       );
       return socialMediaLinks;
     case "remove":
-    //todo
+      return removeChosenSocialMedia(action.payload, state);
     default:
       throw new Error();
   }

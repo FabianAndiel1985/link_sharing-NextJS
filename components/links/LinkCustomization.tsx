@@ -15,8 +15,6 @@ const LinkCustomization: React.FC = () => {
 
   const { dispatch } = useSocialMediaContext();
 
-  //TODO dispatch wenn on click bei remove
-
   const removeHandler = (
     selectedPlattform: ISelectedPlattform | null,
     id: string
