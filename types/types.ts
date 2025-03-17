@@ -83,8 +83,8 @@ export interface IPlattform extends IPlattformEntryProps {
 //==== context ========================================
 
 export interface ActionTypes {
-  type: "add" | "remove";
-  payload: ISelectedPlattform;
+  type: "add" | "remove" | "sort";
+  payload: ISelectedPlattform | IBox[];
 }
 
 export interface ISocialMediaLinks {

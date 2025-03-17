@@ -2,6 +2,7 @@
 
 import {
   ActionTypes,
+  IBox,
   ISelectedPlattform,
   ISocialMediaLinks,
   SocialMediaContextType,
@@ -43,6 +44,27 @@ const removeChosenSocialMedia = (
   return { socialMediaLinks: tempSocialMediaLinks };
 };
 
+const sortStateSocialMedia = (
+  dispatchedObject: IBox[],
+  state: ISocialMediaLinks
+): ISocialMediaLinks => {
+  let tempSocialMediaLinks = [...state.socialMediaLinks];
+  let sortedSocialMediaLinks: ISelectedPlattform[] = [];
+
+  dispatchedObject.forEach((item: IBox, index) => {
+    //TODO check if both arrays have same length - other error checking
+    const indexInTempSocialMediaLinks = tempSocialMediaLinks.findIndex(
+      (element) => {
+        return element.id === item.id;
+      }
+    );
+    sortedSocialMediaLinks[index] =
+      tempSocialMediaLinks[indexInTempSocialMediaLinks];
+  });
+
+  return { socialMediaLinks: sortedSocialMediaLinks };
+};
+
 const reducer = (
   state: ISocialMediaLinks,
   action: ActionTypes
@@ -50,12 +72,21 @@ const reducer = (
   switch (action.type) {
     case "add":
       const socialMediaLinks = checkIfSocialMediaWasChoosen(
-        action.payload,
+        action.payload as ISelectedPlattform,
         state
       );
       return socialMediaLinks;
+    case "sort":
+      const sortedSocialMediaLinks = sortStateSocialMedia(
+        action.payload as IBox[],
+        state
+      );
+      return sortedSocialMediaLinks;
     case "remove":
-      return removeChosenSocialMedia(action.payload, state);
+      return removeChosenSocialMedia(
+        action.payload as ISelectedPlattform,
+        state
+      );
     default:
       throw new Error();
   }
