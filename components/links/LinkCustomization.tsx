@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Button from "../shared/Button";
 import "./linkCustomization.scss";
 import { DragDropContext, Draggable } from "@hello-pangea/dnd";
@@ -15,20 +15,22 @@ const LinkCustomization: React.FC = () => {
 
   const { dispatch } = useSocialMediaContext();
 
-  const removeHandler = (
-    selectedPlattform: ISelectedPlattform | null,
-    id: string
-  ): void => {
-    setBoxes((prevState) => {
-      return [...prevState.filter((item) => item.id != id)];
-    });
-    if (selectedPlattform != null) {
-      dispatch({
-        type: "remove",
-        payload: selectedPlattform,
+  //ToDo Refactor it to formik
+
+  const removeHandler = useCallback(
+    (selectedPlattform: ISelectedPlattform | null, id: string): void => {
+      setBoxes((prevState) => {
+        return [...prevState.filter((item) => item.id != id)];
       });
-    }
-  };
+      if (selectedPlattform != null) {
+        dispatch({
+          type: "remove",
+          payload: selectedPlattform,
+        });
+      }
+    },
+    []
+  );
 
   const handleDragEnd = (result: any): void => {
     if (!result.destination) return;

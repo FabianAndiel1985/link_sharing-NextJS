@@ -5,6 +5,7 @@ import CustomInput from "../shared/CustomInput";
 import { ReactNode, useEffect, useState } from "react";
 import { DraggableProps, ISelectedPlattform } from "@/types/types";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
+import React from "react";
 
 const LinkDragable: React.FC<DraggableProps> = ({
   index,
@@ -79,4 +80,4 @@ const LinkDragable: React.FC<DraggableProps> = ({
   );
 };
 
-export default LinkDragable;
+export default React.memo(LinkDragable);
