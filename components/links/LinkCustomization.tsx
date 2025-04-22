@@ -9,11 +9,25 @@ import StartImage from "./StartImage";
 import { v4 as uuidv4 } from "uuid";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
 import { IBox, ISelectedPlattform } from "@/types/types";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const LinkCustomization: React.FC = () => {
   const [boxes, setBoxes] = useState<IBox[]>([]);
 
   const { dispatch } = useSocialMediaContext();
+
+  let formik = useFormik({
+    initialValues: {
+      name: "",
+    },
+
+    validationSchema: Yup.object({}),
+
+    onSubmit: (values) => {
+      // formik.resetForm();
+    },
+  });
 
   //ToDo Refactor it to formik
 
