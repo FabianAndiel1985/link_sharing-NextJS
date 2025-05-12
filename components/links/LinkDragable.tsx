@@ -6,11 +6,15 @@ import { ReactNode, useEffect, useState } from "react";
 import { DraggableProps, ISelectedPlattform } from "@/types/types";
 import { useSocialMediaContext } from "@/context/SocialMediaContext";
 import React from "react";
+import { updateFormikAndContext } from "@/utils/linkDragable";
 
 const LinkDragable: React.FC<DraggableProps> = ({
   index,
   removeHandler,
   parentKey,
+
+  setFormikFieldValue,
+  formikFieldValues,
 }: DraggableProps) => {
   const [selectedPlattform, setSelectedPlattform] =
     useState<ISelectedPlattform | null>(null);
@@ -18,10 +22,12 @@ const LinkDragable: React.FC<DraggableProps> = ({
 
   useEffect(() => {
     if (selectedPlattform) {
-      dispatch({
-        type: "add",
-        payload: selectedPlattform,
-      });
+      updateFormikAndContext(
+        selectedPlattform,
+        formikFieldValues,
+        setFormikFieldValue,
+        dispatch
+      );
     }
   }, [selectedPlattform]);
 
