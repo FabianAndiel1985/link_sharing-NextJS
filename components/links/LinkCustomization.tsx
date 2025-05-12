@@ -17,14 +17,15 @@ const LinkCustomization: React.FC = () => {
 
   const { dispatch } = useSocialMediaContext();
 
-  let formik = useFormik({
+  let formik = useFormik<{ items: ISelectedPlattform[] }>({
     initialValues: {
-      name: "",
+      items: [],
     },
 
     validationSchema: Yup.object({}),
 
     onSubmit: (values) => {
+      console.log("Submitting works");
       // formik.resetForm();
     },
   });
@@ -77,11 +78,20 @@ const LinkCustomization: React.FC = () => {
               isMiddleLink={false}
               text={"+ Add new link"}
               onClick={() => {
+                const id = uuidv4();
+                formik.setFieldValue("items", [
+                  ...formik.values.items,
+                  { id: id, name: "" },
+                ]);
+                dispatch({
+                  type: "add",
+                  payload: { id: id, name: "" },
+                });
                 //UUIDV4 cause this list will be sorted
                 if (boxes.length === 0) {
-                  setBoxes([{ id: uuidv4() }]);
+                  setBoxes([{ id: id }]);
                 } else if (boxes.length < 5) {
-                  setBoxes((prevBoxes) => [...prevBoxes, { id: uuidv4() }]);
+                  setBoxes((prevBoxes) => [...prevBoxes, { id: id }]);
                 }
               }}
               fullLength={true}
@@ -109,6 +119,13 @@ const LinkCustomization: React.FC = () => {
                               index={index + 1}
                               removeHandler={removeHandler}
                               parentKey={id}
+                              value={
+                                formik.values.items.find(
+                                  (item: ISelectedPlattform) => item.id === id
+                                )?.name || ""
+                              }
+                              formikFieldValues={formik.values.items}
+                              setFormikFieldValue={formik.setFieldValue}
                             />
                           </li>
                         )}
@@ -125,7 +142,12 @@ const LinkCustomization: React.FC = () => {
         </div>
 
         <div className={"customization__saving-box"}>
-          <Button isFilled={true} isMiddleLink={false} text={"Save"} />
+          <Button
+            isFilled={true}
+            isMiddleLink={false}
+            text={"Save"}
+            onClick={formik.handleSubmit}
+          />
         </div>
       </div>
     </>
