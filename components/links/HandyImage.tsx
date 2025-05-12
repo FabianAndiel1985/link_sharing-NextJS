@@ -24,7 +24,7 @@ const HandyImage: React.FC = () => {
     return (
       <>
         {rowContent.map((item: IRowWithSocialMediaYCoor, index: number) => {
-          if (item.name != null) {
+          if (item.name != null && item.name != "") {
             return (
               <>
                 <RowWithSocialMedia
