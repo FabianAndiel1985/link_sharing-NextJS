@@ -30,8 +30,6 @@ const LinkCustomization: React.FC = () => {
     },
   });
 
-  //ToDo Refactor it to formik
-
   const removeHandler = useCallback(
     (selectedPlattform: ISelectedPlattform | null, id: string): void => {
       setBoxes((prevState) => {
@@ -42,6 +40,11 @@ const LinkCustomization: React.FC = () => {
           type: "remove",
           payload: selectedPlattform,
         });
+        const tempFormikValues: ISelectedPlattform[] =
+          formik.values.items.filter(
+            (item: ISelectedPlattform) => item.id != selectedPlattform.id
+          );
+        formik.setFieldValue("items", [...tempFormikValues]);
       }
     },
     []
