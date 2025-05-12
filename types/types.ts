@@ -19,6 +19,9 @@ export interface DraggableProps {
   index: number;
   removeHandler: (param: ISelectedPlattform | null, id: string) => void;
   parentKey: string;
+  value: string;
+  formikFieldValues: ISelectedPlattform[];
+  setFormikFieldValue: (name: string, value: ISelectedPlattform[]) => void;
 }
 
 //==== handy image component ========================================

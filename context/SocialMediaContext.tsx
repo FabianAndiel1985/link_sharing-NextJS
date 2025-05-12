@@ -22,7 +22,6 @@ const checkIfSocialMediaWasChoosen = (
   const indexOfIdOccurence: number = state.socialMediaLinks.findIndex(
     (item: ISelectedPlattform) => item.id == dispatchedObject.id
   );
-
   if (indexOfIdOccurence != -1) {
     let tempSocialMediaLinks = [...state.socialMediaLinks];
     tempSocialMediaLinks[indexOfIdOccurence] = dispatchedObject;
