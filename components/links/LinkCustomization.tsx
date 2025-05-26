@@ -47,7 +47,7 @@ const LinkCustomization: React.FC = () => {
         formik.setFieldValue("items", [...tempFormikValues]);
       }
     },
-    []
+    [formik, dispatch]
   );
 
   const handleDragEnd = (result: any): void => {
@@ -129,6 +129,7 @@ const LinkCustomization: React.FC = () => {
                               }
                               formikFieldValues={formik.values.items}
                               setFormikFieldValue={formik.setFieldValue}
+                              formik={formik}
                             />
                           </li>
                         )}

@@ -1,3 +1,4 @@
+import { FormikProps } from "formik";
 import { ReactNode } from "react";
 
 //========= shared
@@ -5,6 +6,7 @@ import { ReactNode } from "react";
 export interface ISelectedPlattform {
   id: string | number;
   name: string;
+  link?: string;
 }
 
 //==== link customization component ========================================
@@ -22,6 +24,7 @@ export interface DraggableProps {
   value: string;
   formikFieldValues: ISelectedPlattform[];
   setFormikFieldValue: (name: string, value: ISelectedPlattform[]) => void;
+  formik: FormikProps<{ items: ISelectedPlattform[] }>;
 }
 
 //==== handy image component ========================================

@@ -52,6 +52,7 @@ const SocialMediaSelect: React.FC<ISocialMediaSelectProps> = ({
           setSelectedPlattform({
             name: name,
             id: parentKey,
+            link: "",
           });
           setMenueIsOpen(false);
         }}

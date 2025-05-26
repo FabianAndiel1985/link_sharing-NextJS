@@ -12,9 +12,9 @@ const LinkDragable: React.FC<DraggableProps> = ({
   index,
   removeHandler,
   parentKey,
-
   setFormikFieldValue,
   formikFieldValues,
+  formik,
 }: DraggableProps) => {
   const [selectedPlattform, setSelectedPlattform] =
     useState<ISelectedPlattform | null>(null);
@@ -79,6 +79,8 @@ const LinkDragable: React.FC<DraggableProps> = ({
             name="link-entry"
             aria-label="Enter link"
             id="input-link-entry"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           ></input>
         </CustomInput>
       </div>
